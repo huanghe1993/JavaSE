@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>JavaSE</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>generic</module>
+        <module>io</module>
+    </modules>
+
+    <!--管理版本号-->
+    <properties>
+        <!--maven的属性设置-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!--全局变量-->
+        <junit-version>4.11</junit-version>
+        <lombok-version>1.16.18</lombok-version>
+    </properties>
+
+    <!--加强管理依赖-->
+    <dependencyManagement>
+        <!--父模块管理    -->
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok-version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit-version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.10</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!--添加统一的插件    -->
+    <build>
+        <plugins>
+            <plugin>
+                <!--jdk1.8编译-->
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+
+
+        <resources>
+            <!--默认没有resource时，maven执行编译代码会把src/main/resources目录下的
+            文件拷贝到target/classes目录下，对于src/main/java目录下的非java文件不处理
+            程序需要把一些文件放在src/main/java目录中，当执行java程序时，需要用到src/main/java目录
+            中的文件，那么需要告诉maven在mvn compiler的时候-->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
+            </resource>
+        </resources>
+    </build>
+
+</project>
