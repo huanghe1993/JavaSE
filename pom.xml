@@ -12,6 +12,7 @@
         <module>generic</module>
         <module>io</module>
         <module>sort</module>
+        <module>thread</module>
     </modules>
 
     <!--管理版本号-->
