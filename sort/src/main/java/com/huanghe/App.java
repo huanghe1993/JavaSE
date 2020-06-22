@@ -19,7 +19,7 @@ public class App {
         studentList.add(new Student(18, "Angela"));
         studentList.add(new Student(16, "Lucy"));
 
-        new ImplComparator<Student>().sortByAge(studentList);
+        //new ImplComparator<Student>().sortByAge(studentList);
 
 
     }

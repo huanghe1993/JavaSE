@@ -12,14 +12,12 @@ import java.util.List;
  */
 public class ImplComparator<E> {
 
-    public Comparator<? super E> sortByAge(List<E> list) {
-
-        return list.sort(Comparator.comparing(E::){
-
-        }
-
-
-    }
+    //public Comparator<? super E> sortByAge(List<E> list) {
+    //
+    //
+    //
+    //
+    //}
 
 
 }
