@@ -1,30 +1,32 @@
-package org.huanghe.crawel;
+package org.huanghe.crawel.httpclient;
 
 import org.apache.http.HttpEntity;
+import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 /**
  * @author River
- * @date 2020/6/23 6:31
+ * @date 2020/6/23 6:47
  * @description
  */
-public class Demo2_HttpGet {
+public class Demo04_HttpConfig {
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         //1.创建对象
         CloseableHttpClient httpClient = HttpClients.createDefault();
-
-        //设置请求地址
-        URIBuilder uriBuilder = new URIBuilder("http://yun.itheima.com/search");
-        uriBuilder.setParameter("keys","java");
-
         //2.访问地址
-        HttpGet httpGet = new HttpGet(uriBuilder.build());
+        HttpGet httpGet = new HttpGet("http://www.itcast.cn");
+        // 配置请求信息
+        RequestConfig config = RequestConfig.custom().setConnectTimeout(1000) //创建连接的做大连接时间 一天
+                .setConnectionRequestTimeout(500) //获取连接的最长时间
+                .setSocketTimeout(10*1000) //设置数据传输的最长时间
+                .build();
+        httpGet.setConfig(config);
+
         //3.发起请求
         CloseableHttpResponse response = httpClient.execute(httpGet);
         //4.解析响应
